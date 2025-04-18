@@ -1,0 +1,70 @@
+package com.fly.main;
+
+import com.fly.util.GameUtil;
+
+import static com.fly.util.Constant.*;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
+public class Flier {
+    private BufferedImage[] images;
+    public static final int IMG_COUNT = 3;
+
+    private int state;
+    public static final int state_NORMAL = 0;
+    public static final int state_UP = 1;
+    public static final int state_DOWN = 2;
+
+    private int x =200, y=200;
+
+    private  boolean up=false,down=false;
+    private int speed=6;
+
+
+    public Flier(){
+        images = new BufferedImage[IMG_COUNT];
+        for (int i = 0; i < IMG_COUNT; i++) {
+            images[i] = GameUtil.loadBufferedImage(Flier_IMG[i]);
+        }
+
+
+    }
+    public void draw(Graphics g){
+        flyLogic();
+        g.drawImage(images[state],x,y,null);
+    }
+
+    public void flyLogic(){
+        if(up){
+            y-=speed;
+            if (y<20){
+                y=20;
+            }
+        }
+        if(!up){
+            y+=speed;
+            if(y>1000){
+                y=980;
+            }
+        }
+    }
+
+    //control flier move
+    public void fly(int fly){
+        switch (fly){
+            case 1:
+                state=1;
+                up=true;
+                break;
+            case 5:
+                state=2;
+                up=false;
+                break;
+
+
+        }
+    }
+
+
+}
