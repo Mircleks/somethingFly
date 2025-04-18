@@ -16,6 +16,9 @@ public class GameFrame extends Frame {
 
     private Flier flier;
 
+
+    private GameBarrierLayer gameBarrierLayer;
+
     private GameFrontGround gameFrontGround;
 
     private BufferedImage buffimg = new BufferedImage(FRAM_WIDTH,FRAM_HEIGHT,BufferedImage.TYPE_4BYTE_ABGR);
@@ -66,6 +69,8 @@ public class GameFrame extends Frame {
         flier = new Flier();
         gameFrontGround = new GameFrontGround();
 
+        gameBarrierLayer = new GameBarrierLayer();
+
     }
 
     class run extends Thread {
@@ -92,6 +97,7 @@ public class GameFrame extends Frame {
         gameBackGround.draw(graphics);
         flier.draw(graphics);
         gameFrontGround.draw(graphics);
+        gameBarrierLayer.draw(graphics);
 
         g.drawImage(buffimg,0,0,null);
 

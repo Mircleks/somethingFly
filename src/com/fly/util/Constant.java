@@ -20,4 +20,15 @@ public class Constant {
             };
 
 
+    public static final String[] BARRIER_IMG_PATH={
+
+      "image/barrier.png",
+      "image/barrier_up.png",
+      "image/barrier_down.png"
+
+
+
+    };
+
+
 }
