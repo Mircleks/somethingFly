@@ -16,7 +16,13 @@ public class Flier {
     public static final int state_UP = 1;
     public static final int state_DOWN = 2;
 
+    private Rectangle rect;
+
     private int x =200, y=200;
+
+    public Rectangle getRect() {
+        return rect;
+    }
 
     private  boolean up=false,down=false;
     private int speed=6;
@@ -28,11 +34,21 @@ public class Flier {
             images[i] = GameUtil.loadBufferedImage(Flier_IMG[i]);
         }
 
+       /* int w = images[0].getWidth()-110;
+        int h = images[0].getHeight()-50;*/
+        int w = 20;
+        int h = 20;
+        rect = new Rectangle(w,h);
+
 
     }
     public void draw(Graphics g){
         flyLogic();
         g.drawImage(images[state],x,y,null);
+
+        g.drawRect(x+90,y+60,(int)rect.getWidth(),rect.height);
+        rect.x=this.x;
+        rect.y=this.y;
     }
 
     public void flyLogic(){

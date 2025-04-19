@@ -1,5 +1,7 @@
 package com.fly.main;
 
+import javax.swing.*;
+
 import static com.fly.util.Constant.*;
 
 import java.awt.*;
@@ -15,6 +17,8 @@ public class GameFrame extends Frame {
     private GameBackGround gameBackGround;
 
     private Flier flier;
+
+    private volatile boolean gameRunning = true;
 
 
     private GameBarrierLayer gameBarrierLayer;
@@ -76,12 +80,12 @@ public class GameFrame extends Frame {
     class run extends Thread {
         @Override
         public void run() {
-            while(true){
+            while(gameRunning){
                 repaint();
                 try {
                     Thread.sleep(30);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
@@ -97,11 +101,48 @@ public class GameFrame extends Frame {
         gameBackGround.draw(graphics);
         flier.draw(graphics);
         gameFrontGround.draw(graphics);
+        gameBarrierLayer.logic();
         gameBarrierLayer.draw(graphics);
+
+        //check collision
+        checkCollision();
 
         g.drawImage(buffimg,0,0,null);
 
     }
+
+
+    // check collision
+    private void checkCollision() {
+        if (!gameRunning) return;
+        Rectangle flierRect = flier.getRect();
+        for (Barrier barrier : gameBarrierLayer.getBarriers()) {
+            if (flierRect.intersects(barrier.getRect())) {
+                handleCollision(); // 触发碰撞处理
+                return;
+            }
+        }
+    }
+
+    private void handleCollision() {
+        gameRunning = false; // 停止游戏循环
+        System.out.println("Game Over!");
+        SwingUtilities.invokeLater(() -> {
+            new GameOverDiaLog(this).setVisible(true); // 显示弹窗
+        });
+    }
+
+    public void restartGame() {
+        // 重置游戏状态
+        initGamg(); // 重新初始化游戏元素
+        gameRunning = true;
+        new run().start(); // 重启游戏线程
+    }
+
+
+
+
+
     public void add(KeyEvent e) {
         switch (e.getKeyCode()){
             case KeyEvent.VK_UP:
