@@ -1,5 +1,7 @@
 package com.fly.main;
 
+import com.fly.util.RecordManager;
+
 import javax.swing.*;
 
 import static com.fly.util.Constant.*;
@@ -103,6 +105,7 @@ public class GameFrame extends Frame {
         gameFrontGround.draw(graphics);
         gameBarrierLayer.logic();
         gameBarrierLayer.draw(graphics);
+        gameBarrierLayer.drawTimer(graphics);
 
         //check collision
         checkCollision();
@@ -127,6 +130,15 @@ public class GameFrame extends Frame {
     private void handleCollision() {
         gameRunning = false; // 停止游戏循环
         System.out.println("Game Over!");
+
+
+        long currentTime = gameBarrierLayer.getCurrentTime();
+
+        RecordManager.updateRecord(currentTime);
+
+        // Force refresh the interface to ensure that the screen remains at the moment of collision
+        repaint();
+
         SwingUtilities.invokeLater(() -> {
             new GameOverDiaLog(this).setVisible(true); // 显示弹窗
         });

@@ -1,6 +1,7 @@
 package com.fly.main;
 
 import com.fly.util.Constant;
+import com.fly.util.RecordManager;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -9,14 +10,19 @@ import java.util.Random;
 
 public class GameBarrierLayer {
 
+    private GameTime gameTime;
+
     private Random random = new Random();
 
     private List<Barrier> barriers;
 
     public GameBarrierLayer(){
+        gameTime = new GameTime();
         barriers = new ArrayList<>();
 
     }
+
+
     /*public void draw(Graphics g){
         Barrier barrier= new Barrier(800,20,450,0);
         //barrier.draw(g);
@@ -61,6 +67,7 @@ public class GameBarrierLayer {
         if (barriers.isEmpty()) {
             ran();
 
+            gameTime.begin();
             // Generate the top obstacle(The height is numberTop, with y starting from the top)
             Barrier top = new Barrier(1600, Constant.FRAM_HEIGHT-numberTop, numberTop, Barrier.TYPE_TOP_NORMAL);
             barriers.add(top);
@@ -71,6 +78,8 @@ public class GameBarrierLayer {
             Barrier last = barriers.get(barriers.size() - 1);
             if (last.isInFrame()) { // A new one is generated when the last obstacle enters the screen
                 ran();
+
+
                 // The x-coordinate of the new obstacle is based on the position of the last obstacle
                 Barrier top = new Barrier(last.getX() + 400, 0, numberTop, Barrier.TYPE_TOP_NORMAL);
                 barriers.add(top);
@@ -80,6 +89,21 @@ public class GameBarrierLayer {
         }
         // Remove the obstacles that have moved out of the screen
         barriers.removeIf(barrier -> barrier.getX() + Barrier.BARRIER_WIDTH < 0);
+    }
+
+
+    public void drawTimer(Graphics g) {
+        if (gameTime != null) {
+            long differ = gameTime.differ();
+            g.setFont(new Font("微软雅黑", Font.BOLD, 20));
+            g.setColor(Color.WHITE); // 可选：设置文字颜色
+            g.drawString("Current: " + differ + "s | Best: " + RecordManager.getHighestTime() + "s", 100, 100);
+        }
+    }
+
+
+    public long getCurrentTime(){
+        return gameTime.differ();
     }
 
     private int numberTop;

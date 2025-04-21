@@ -57,7 +57,7 @@ public class Barrier {
             rect = new Rectangle(
                     x , // 根据实际绘制位置调整
                     Constant.FRAM_HEIGHT - height, // y 坐标从屏幕底部向上计算
-                    barrier_down_width-30, // 使用头部宽度（可能更宽）
+                    barrier_down_width-50, // 使用头部宽度（可能更宽）
                     barrier_down_height-30// 高度为障碍物高度
             );
         } else if (type == TYPE_BOTTOM_NORMAL) {
@@ -81,11 +81,14 @@ public class Barrier {
                 drawBottomNormal(g);
                 break;
         }
-        g.setColor(Color.RED);
-        g.drawRect(rect.x, rect.y, rect.width, rect.height); // 绘制矩形
+        //g.setColor(Color.RED);
+        //g.drawRect(rect.x, rect.y, rect.width, rect.height); // 绘制矩形
     }
 
     private void drawTopNormal(Graphics g){
+
+        x-= speed;
+        rect.x = x - BARRIER_HEAD_WIDTH / 2;
         int count = (height - BARRIER_HEAD_HEIGHT)/BARRIER_HEIGHT+1;
 
         /*for (int i = 0; i < count; i++) {
@@ -97,8 +100,7 @@ public class Barrier {
         //int y = height-BARRIER_HEAD_HEIGHT;
         int barrierBottomY = Constant.FRAM_HEIGHT - height;
         g.drawImage(imgs[2],x-(BARRIER_HEAD_WIDTH)/2,barrierBottomY,null);
-        x-= speed;
-        rect.x = x - BARRIER_HEAD_WIDTH / 2; // 更新矩形位置
+        // 更新矩形位置
 
     }
 
@@ -109,14 +111,15 @@ public class Barrier {
     }
 
     private void drawBottomNormal(Graphics g){
+        x -= speed;
+        rect.x = x - (BARRIER_HEAD_WIDTH - BARRIER_WIDTH) / 2;
 
         int count = height/BARRIER_HEIGHT+1;
         int y = Constant.FRAM_HEIGHT-height;
         for (int i = 0; i < count; i++) {
             g.drawImage(imgs[1],x-(BARRIER_HEAD_WIDTH-BARRIER_WIDTH)/2,y,null);
         }
-        x -= speed;
-        rect.x = x - (BARRIER_HEAD_WIDTH - BARRIER_WIDTH) / 2;
+
 
 
     }

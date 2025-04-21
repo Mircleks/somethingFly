@@ -36,8 +36,8 @@ public class Flier {
 
        /* int w = images[0].getWidth()-110;
         int h = images[0].getHeight()-50;*/
-        int w = 20;
-        int h = 20;
+        int w = 10;
+        int h = 10;
         rect = new Rectangle(w,h);
 
 
@@ -46,7 +46,7 @@ public class Flier {
         flyLogic();
         g.drawImage(images[state],x,y,null);
 
-        g.drawRect(x+90,y+60,(int)rect.getWidth(),rect.height);
+        //g.drawRect(x+100,y+70,(int)rect.getWidth(),rect.height);
         rect.x=this.x;
         rect.y=this.y;
     }
