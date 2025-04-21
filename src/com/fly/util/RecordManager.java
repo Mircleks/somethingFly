@@ -4,7 +4,7 @@ package com.fly.util;
 import java.io.*;
 
 public class RecordManager {
-    private static final String RECORD_PATH = "record.txt"; // 或使用 File.separator 适配系统
+    private static final String RECORD_PATH = "record.txt";
     private static long highestTime = 0;
 
     static {
