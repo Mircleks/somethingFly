@@ -51,20 +51,20 @@ public class Barrier {
         this.type = type;
 
 
-        // 初始化碰撞矩形
+        // Initialize the collision rectangle
         if (type == TYPE_TOP_NORMAL) {
             // 顶部障碍物的矩形（覆盖整个障碍物）
             rect = new Rectangle(
-                    x , // 根据实际绘制位置调整
-                    Constant.FRAM_HEIGHT - height, // y 坐标从屏幕底部向上计算
-                    barrier_down_width-50, // 使用头部宽度（可能更宽）
-                    barrier_down_height-30// 高度为障碍物高度
+                    x ,
+                    Constant.FRAM_HEIGHT - height,
+                    barrier_down_width-50,
+                    barrier_down_height-30
             );
         } else if (type == TYPE_BOTTOM_NORMAL) {
-            // 底部障碍物的矩形
+            // The rectangle of the bottom obstacle
             rect = new Rectangle(
-                    x, // 根据绘制偏移调整
-                    y, // y 坐标为传入的底部位置
+                    x,
+                    y,
                     BARRIER_HEAD_WIDTH-40,
                     height
             );
@@ -81,8 +81,7 @@ public class Barrier {
                 drawBottomNormal(g);
                 break;
         }
-        //g.setColor(Color.RED);
-        //g.drawRect(rect.x, rect.y, rect.width, rect.height); // 绘制矩形
+
     }
 
     private void drawTopNormal(Graphics g){
@@ -91,16 +90,10 @@ public class Barrier {
         rect.x = x - BARRIER_HEAD_WIDTH / 2;
         int count = (height - BARRIER_HEAD_HEIGHT)/BARRIER_HEIGHT+1;
 
-        /*for (int i = 0; i < count; i++) {
-            g.drawImage(imgs[0],x,y+i*BARRIER_HEIGHT,null);
 
-        }*/
-
-
-        //int y = height-BARRIER_HEAD_HEIGHT;
         int barrierBottomY = Constant.FRAM_HEIGHT - height;
         g.drawImage(imgs[2],x-(BARRIER_HEAD_WIDTH)/2,barrierBottomY,null);
-        // 更新矩形位置
+
 
     }
 

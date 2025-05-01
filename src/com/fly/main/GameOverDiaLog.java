@@ -28,15 +28,16 @@ public class GameOverDiaLog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 gameFrame.restartGame();
-                dispose(); // 关闭弹窗
+                // Close the pop-up window
+                dispose();
             }
         });
         panel.add(restartButton, BorderLayout.SOUTH);
 
-        // 设置弹窗属性
+        // Set the pop-up window properties
         getContentPane().add(panel);
         setSize(300, 150);
-        setLocationRelativeTo(owner); // 居中显示
+        setLocationRelativeTo(owner);
         setResizable(false);
     }
 }

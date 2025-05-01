@@ -121,14 +121,15 @@ public class GameFrame extends Frame {
         Rectangle flierRect = flier.getRect();
         for (Barrier barrier : gameBarrierLayer.getBarriers()) {
             if (flierRect.intersects(barrier.getRect())) {
-                handleCollision(); // 触发碰撞处理
+                handleCollision();
                 return;
             }
         }
     }
 
     private void handleCollision() {
-        gameRunning = false; // 停止游戏循环
+        // Stop the game loop
+        gameRunning = false;
         System.out.println("Game Over!");
 
 
@@ -145,10 +146,12 @@ public class GameFrame extends Frame {
     }
 
     public void restartGame() {
-        // 重置游戏状态
-        initGamg(); // 重新初始化游戏元素
+        //Reset the game status
+        // Reinitialize the game elements
+        initGamg();
         gameRunning = true;
-        new run().start(); // 重启游戏线程
+        // Restart the game thread
+        new run().start();
     }
 
 

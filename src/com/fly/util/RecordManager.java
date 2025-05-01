@@ -19,7 +19,7 @@ public class RecordManager {
                 highestTime = Long.parseLong(line.trim());
             }
         } catch (IOException | NumberFormatException e) {
-            // 文件不存在或格式错误时初始化
+
             highestTime = 0;
             saveRecord();
         }
