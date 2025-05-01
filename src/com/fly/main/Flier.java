@@ -2,10 +2,10 @@ package com.fly.main;
 
 import com.fly.util.GameUtil;
 
-import static com.fly.util.Constant.*;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
+
+import static com.fly.util.Constant.Flier_IMG;
 
 public class Flier {
     private BufferedImage[] images;
