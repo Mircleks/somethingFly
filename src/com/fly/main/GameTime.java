@@ -14,6 +14,7 @@ public class GameTime {
         beginTime = System.currentTimeMillis();
     }
 
+
     public long differ(){
         endTime = System.currentTimeMillis();
         return differ = (endTime-beginTime)/1000;

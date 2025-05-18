@@ -35,8 +35,7 @@ public class GameFrontGround {
     }
 
     public void draw(Graphics g){
-        /*Cloud cloud = new Cloud(img[1],CLOUD_SPEED,400,50);
-        clouds.add(cloud);*/
+
 
         logic();
 

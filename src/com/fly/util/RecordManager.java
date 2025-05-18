@@ -65,6 +65,7 @@ public class RecordManager {
         }
     }
 
+
     // AES Decryption
     private static String decrypt(String data, String key) {
         try {

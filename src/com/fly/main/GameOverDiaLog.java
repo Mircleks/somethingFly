@@ -39,5 +39,6 @@ public class GameOverDiaLog extends JDialog {
         setSize(300, 150);
         setLocationRelativeTo(owner);
         setResizable(false);
+
     }
 }

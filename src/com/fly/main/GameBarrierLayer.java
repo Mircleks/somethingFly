@@ -23,7 +23,6 @@ public class GameBarrierLayer {
     }
 
 
-
     public void draw(Graphics g) {
         for (Barrier barrier : barriers) {
             // Automatically draw all obstacles

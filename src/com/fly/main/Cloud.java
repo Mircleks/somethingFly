@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 public class Cloud {
 
 
-
     private BufferedImage img;
 
     private int speed;

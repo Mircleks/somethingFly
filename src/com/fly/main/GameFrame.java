@@ -114,7 +114,6 @@ public class GameFrame extends Frame {
 
     }
 
-
     // check collision
     private void checkCollision() {
         if (!gameRunning) return;
