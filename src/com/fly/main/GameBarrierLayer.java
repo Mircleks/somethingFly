@@ -10,7 +10,14 @@ import java.util.Random;
 
 public class GameBarrierLayer {
 
+
     private GameTime gameTime;
+
+    // Whether to display prompt information
+    private boolean showInstructions = true;
+
+    // The time when the prompt information begins to be displayed
+    private long instructionStartTime;
 
     private Random random = new Random();
 
@@ -20,6 +27,9 @@ public class GameBarrierLayer {
         gameTime = new GameTime();
         barriers = new ArrayList<>();
 
+        // Record the start time of the prompt message
+        instructionStartTime = System.currentTimeMillis();
+
     }
 
 
@@ -27,6 +37,18 @@ public class GameBarrierLayer {
         for (Barrier barrier : barriers) {
             // Automatically draw all obstacles
             barrier.draw(g);
+        }
+
+        // 绘制提示信息
+        if (showInstructions) {
+            g.setFont(new Font("微软雅黑", Font.BOLD, 40));
+            g.setColor(Color.RED);
+            g.drawString("Press UP key to ascend!", 800, 1000);
+
+            // Check if it exceeds 5 seconds and hide the prompt message
+            if (System.currentTimeMillis() - instructionStartTime > 5000) {
+                showInstructions = false;
+            }
         }
     }
 
