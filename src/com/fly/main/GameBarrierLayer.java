@@ -43,7 +43,7 @@ public class GameBarrierLayer {
         if (showInstructions) {
             g.setFont(new Font("微软雅黑", Font.BOLD, 40));
             g.setColor(Color.RED);
-            g.drawString("Press UP key to ascend!", 800, 1000);
+            g.drawString("Press the up key to rise and avoid obstacles!", 800, 1000);
 
             // Check if it exceeds 5 seconds and hide the prompt message
             if (System.currentTimeMillis() - instructionStartTime > 5000) {
