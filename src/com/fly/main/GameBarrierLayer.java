@@ -39,7 +39,7 @@ public class GameBarrierLayer {
             barrier.draw(g);
         }
 
-        // 绘制提示信息
+        // Draw prompt information
         if (showInstructions) {
             g.setFont(new Font("微软雅黑", Font.BOLD, 40));
             g.setColor(Color.RED);
