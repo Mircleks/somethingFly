@@ -12,7 +12,8 @@ public class Barrier {
 
     private Rectangle rect;
 
-    private int speed = 3;
+    //private int speed = 3;
+    private int speed = 20;
 
     static{
         final int COUNT = 3;
